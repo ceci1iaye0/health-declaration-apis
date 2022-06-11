@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.ts",
+    "start": "nodemon server.ts",
     "code:check": "npm run code:lint;",
     "code:clean": "npm run code:lint --fix;",
     "code:lint": "eslint --ext .js,.jsx,.ts,.tsx \"src/\"",

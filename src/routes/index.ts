@@ -1,14 +1,10 @@
 import { Router } from "express";
 
-function routes() {
-  const router = Router();
+const healthRouter = Router();
 
-  router.get("/", function (req, res, next) {
-    console.log("Health OK");
-    res.sendStatus(200);
-  });
+healthRouter.get("/", function (req, res, next) {
+  console.log("Health OK");
+  res.sendStatus(200);
+});
 
-  return router;
-}
-
-export default routes;
+export default healthRouter;

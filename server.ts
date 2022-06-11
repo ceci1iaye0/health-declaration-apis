@@ -1,9 +1,25 @@
 import express from "express";
 
-import indexRouter from "./src/routes";
+import healthRouter from "./src/routes";
+import healthDeclarationRouter from "./src/routes/health-declaration-routes";
+import * as ErrorHandler from "./src/utils/error-handling";
 
-const server = express();
+const app = express();
+const PORT = process.env.PORT || 4000;
 
-server.use("/health", indexRouter());
+app.use(express.json());
 
-export default server;
+/**
+ * Routers
+ */
+app.use(healthRouter);
+app.use(healthDeclarationRouter);
+
+/**
+ * Error handlers
+ */
+app.use(ErrorHandler.invalidPathHandler);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
