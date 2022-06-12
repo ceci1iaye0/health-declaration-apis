@@ -1,9 +1,9 @@
 import express from "express";
 
-import healthRouter from "./src/routes";
-import healthDeclarationRouter from "./src/routes/health-declaration-routes";
-import connectDB from "./src/utils/database";
-import * as errorHandler from "./src/utils/error-handler";
+import healthRouter from "./routes";
+import healthDeclarationRouter from "./routes/health-declaration-routes";
+import connectDB from "./utils/database";
+import * as errorHandler from "./utils/error-handler";
 
 const app = express();
 const PORT = process.env.PORT || 4000;

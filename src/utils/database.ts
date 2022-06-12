@@ -8,13 +8,14 @@ const uri = `${process.env.MONGODB_URI}`.replace(
   encodeURIComponent(`${process.env.MONGODB_PASSWORD}`)
 );
 
+console.log("MongoDB URI: ", uri);
+
 const connectDB = () => {
   const mongoURI = uri;
   const options = {
     useNewUrlParser: true,
     autoIndex: true,
     connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
-    socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
   };
   connect(mongoURI, options)
     .then(() => {

@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server.ts",
+    "start": "node dist/server.js",
+    "start:dev": "nodemon server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "code:check": "npm run code:lint;",
     "code:clean": "npm run code:lint --fix;",
     "code:lint": "eslint --ext .js,.jsx,.ts,.tsx \"src/\"",
+    "build": "npm run code:clean && tsc",
     "prepare": "husky install"
   },
   "dependencies": {
