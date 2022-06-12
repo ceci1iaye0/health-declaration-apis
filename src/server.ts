@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 
 import healthRouter from "./routes";
@@ -9,6 +10,8 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
+
+app.use(cors());
 
 /**
  * Routers
