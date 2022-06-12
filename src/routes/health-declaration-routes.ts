@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import { HealthDeclarationRoutes } from "../constants/routes";
 import {
   getHealthDeclarations,
   postHealthDeclaration,
@@ -8,9 +9,12 @@ import {
 const healthDeclarationRouter = Router();
 
 healthDeclarationRouter.post(
-  "/health-declaration/submit",
+  HealthDeclarationRoutes.Create,
   postHealthDeclaration
 );
-healthDeclarationRouter.get("/health-declarations", getHealthDeclarations);
+healthDeclarationRouter.get(
+  HealthDeclarationRoutes.GetAll,
+  getHealthDeclarations
+);
 
 export default healthDeclarationRouter;

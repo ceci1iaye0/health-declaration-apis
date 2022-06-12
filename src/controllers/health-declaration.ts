@@ -1,17 +1,51 @@
 import { NextFunction, Request, Response } from "express";
 
-export const postHealthDeclaration = (req: Request, res: Response) => {
-  const { name, temperature } = req.body;
-  console.log(req.body);
-  // Write to database
-  res.json({ name, temperature });
+import HealthDeclaration from "../models/HealthDeclaration";
+import { errorResponse, successResponse } from "../utils/response";
+
+/**
+ * POST /health-declaration
+ * Submit a health declaration
+ */
+export const postHealthDeclaration = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { name, temperature, symptoms, closeContact } = req.body;
+
+  const healthDeclaration = new HealthDeclaration({
+    name,
+    temperature,
+    symptoms,
+    closeContact,
+  });
+
+  try {
+    const result = await healthDeclaration.save();
+    successResponse(res, result);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const getHealthDeclarations = (req: Request, res: Response) => {
-  // Read from database
-  const mockData = [
-    { name: "Celine Wong", temperature: 36.4 },
-    { name: "John Pang", temperature: 36.9 },
-  ];
-  res.json(mockData);
+/**
+ * GET /health-declarations
+ * Get all health declarations
+ */
+export const getHealthDeclarations = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const healthDeclarations = await HealthDeclaration.find(
+    {},
+    { _id: 0, name: 1, temperature: 1, symptoms: 1, closeContact: 1 }
+  );
+
+  try {
+    res.send(healthDeclarations);
+  } catch (error) {
+    next(error);
+  }
 };
