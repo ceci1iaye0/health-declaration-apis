@@ -3,7 +3,7 @@ import { Model, model, Schema } from "mongoose";
 export interface IHealthDeclaration extends Document {
   name: string;
   temperature: number;
-  symptoms: { [k: string]: boolean }[];
+  symptoms: { [k: string]: boolean };
   closeContact: boolean;
 }
 
@@ -17,7 +17,7 @@ const healthDeclarationSchema: Schema = new Schema({
     required: true,
   },
   symptoms: {
-    type: Schema.Types.Array,
+    type: Schema.Types.Mixed,
   },
   closeContact: {
     type: Schema.Types.Boolean,
