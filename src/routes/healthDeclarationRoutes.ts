@@ -4,7 +4,7 @@ import { HealthDeclarationRoutes } from "../constants/routes";
 import {
   getHealthDeclarations,
   postHealthDeclaration,
-} from "../controllers/health-declaration";
+} from "../controllers/healthDeclarationController";
 
 const healthDeclarationRouter = Router();
 

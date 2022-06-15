@@ -8,8 +8,6 @@ const uri = `${process.env.MONGODB_URI}`.replace(
   encodeURIComponent(`${process.env.MONGODB_PASSWORD}`)
 );
 
-console.log("MongoDB URI: ", uri);
-
 const connectDB = () => {
   const mongoURI = uri;
   const options = {

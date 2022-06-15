@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import HealthDeclaration from "../models/HealthDeclaration";
-import { errorResponse, successResponse } from "../utils/response";
+import { successResponse } from "../utils/response";
 
 /**
  * POST /health-declaration
@@ -38,10 +38,7 @@ export const getHealthDeclarations = async (
   res: Response,
   next: NextFunction
 ) => {
-  const healthDeclarations = await HealthDeclaration.find(
-    {},
-    { _id: 0, name: 1, temperature: 1, symptoms: 1, closeContact: 1 }
-  );
+  const healthDeclarations = await HealthDeclaration.find();
 
   try {
     res.send(healthDeclarations);
